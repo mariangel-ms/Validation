@@ -26,7 +26,8 @@ body {
 
 label {
   padding-top: 10px;
-    font-size: 18px;
+    font-size: 14px;
+    padding-bottom: 2px;
         font-family: "Lexend", sans-serif;
     color: #ccc;
     font-weight: 400;
@@ -36,7 +37,7 @@ h1 {
     margin-top: 0;
     font-family: "Lexend", sans-serif;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   color: #ebebeb;
   font-weight: 600;
 }
@@ -81,11 +82,12 @@ input {
   
 }
 
-.information-phone {
+#information-phone {
   font-size: 12px;
   color: #d3d3d3;
   margin-top: 5px; /* Espacio respecto al input */
   margin-bottom: 0;
+  display: none;
 }
 
 #phone-code {
@@ -93,18 +95,21 @@ border: 1px solid #1660c8;
   background: #525252;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
   min-width: 60px;
   text-align: center;
   font-weight: bold;
+  color: #e9ecefde;
+  font-family: "Lexend", sans-serif;
 }
 
 /* 5. Textos de información */
 .information {
+  display: none;
   font-size: 12px;
   color: #d3d3d3;
   margin-top: 5px;
   margin-bottom: 0;
+  flex-direction: column;
 }
 
 /* 6. Estilo del botón */
@@ -118,6 +123,7 @@ border: 1px solid #1660c8;
   font-weight: bold;
   transition: background 0.3s;
   margin-top: 10px;
+  border: #004997 2px solid;
 }
 
 .boton:hover {
@@ -133,5 +139,11 @@ border: 1px solid #1660c8;
 }
 
 .show-information {
-  display: none;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  #form {
+    width: 75%;
+  }
 }
