@@ -1,4 +1,18 @@
-/* 1. Centrado total del formulario en la pantalla */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  /* Esto cambia el borde para que coincida con el tuyo */
+
+  
+  /* Esto "engaña" al navegador para que el fondo sea el de tu diseño */
+  -webkit-text-fill-color: #e9ecef; /* Color de tu texto */
+  -webkit-box-shadow: 0 0 0px 1000px #333333 inset; /* Tu color de fondo (gris oscuro) */
+  
+  /* Mantener la transición suave */
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -76,10 +90,8 @@ input {
 
 .input-phone {
   display: flex;
-  gap: 18px;
-  align-items: center;
-  width: 100%;
-  
+  gap: 10px;
+  align-items: stretch; /* Para que midan lo mismo de alto */
 }
 
 #information-phone {
@@ -91,8 +103,8 @@ input {
 }
 
 #phone-code {
-border: 1px solid #1660c8;
-  background: #525252;
+border: 1px solid #585858;
+  background: #333333;
   padding: 10px;
   border-radius: 8px;
   min-width: 60px;
@@ -106,14 +118,15 @@ border: 1px solid #1660c8;
 .information {
   display: none;
   font-size: 12px;
-  color: #d3d3d3;
+  color: #e62b2b;
   margin-top: 5px;
   margin-bottom: 0;
   flex-direction: column;
+  
 }
 
 /* 6. Estilo del botón */
-.boton {
+#boton {
   background-color: #004997;
   color: white;
   padding: 15px;
@@ -126,20 +139,46 @@ border: 1px solid #1660c8;
   border: #004997 2px solid;
 }
 
-.boton:hover {
+#boton:disabled {
+  opacity: 0.5;
+}
+
+#boton:hover {
   background-color: #0056b3;
 }
 
 .true {
   outline: 2px solid green;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
 }
 
 .false {
   outline: 2px solid red;
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.3)
 }
 
 .show-information {
   display: block;
+}
+
+
+
+input, select {
+  background: #333333; /* Un gris un poco más claro que el fondo */
+  color: #e9ecef;
+  border: 1px solid #444; /* Borde sutil */
+  width: 100%; /* Asegura que todos midan lo mismo */
+  box-sizing: border-box; /* Evita que el padding ensanche el input */
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* El efecto cuando haces click para escribir */
+input:focus, select:focus {
+  border-color: #1660c8;
+  background: #3d3d3d;
+  box-shadow: 0 0 0 3px rgba(22, 96, 200, 0.2); /* Un resplandor suave */
 }
 
 @media (max-width: 600px) {

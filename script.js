@@ -1,7 +1,7 @@
-const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,16}$/gm;
+const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/;
 const USERNAME_REGEX = /^[a-zA-Z0-9]{5,16}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const NUMBER_REGEX = /^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/gm;
+const NUMBER_REGEX = /^\d{7,15}$/;
 
 const countries = document.querySelector("#countries");
 const username = document.querySelector("#username");
@@ -10,20 +10,28 @@ const password = document.querySelector("#password");
 const phoneCode = document.querySelector("#phone-code");
 const number = document.querySelector("#phone");
 const confirmPassword = document.querySelector("#confirm-password");
+const registerButton = document.querySelector("#boton");
+
+//-----------FUNCIONES-----------
+
+const validarBoton = () => {
+  if (username.value === "" || email.value === "" || password.value === "" || number.value === "" || confirmPassword.value === "") {
+    registerButton.disabled = true; 
+  } else {
+    registerButton.disabled = false;
+  }
+};
 
 [...countries].forEach((country) => {
   country.innerHTML = country.innerHTML.split("(")[0];
 });
 
 //VALIDATION
-const validation = (event, element, regex) => {
+const validation = (element, regex) => {
   const validationTest = regex.test(element.value);
   console.log(element.value);
 
-  //eto tengo que leerlo bien
   let information = element.parentElement.querySelector(".information");
-  information = element.parentElement.children[2];
-  //---
 
   if (validationTest) {
     element.classList.add("true");
@@ -41,60 +49,77 @@ const validation = (event, element, regex) => {
     element.classList.remove("false");
     information.classList.remove("show-information");
   }
+
+  validarBoton()
 };
 
 countries.addEventListener("input", (event) => {
   const optionSelected = [...event.target.children].find(
     (option) => option.selected,
   );
-  console.log(optionSelected);
+  console.log(event.target);
 
   phoneCode.innerHTML = `+ ${optionSelected.value}`;
 });
 
+
+const validationPasswords = () => {
+  const information = confirmPassword.parentElement.querySelector(".information");
+
+  if (confirmPassword.value === "") {
+    confirmPassword.classList.remove("true", "false");
+    information.classList.remove("show-information");
+  } 
+  else if (password.value === confirmPassword.value) {
+    confirmPassword.classList.add("true");
+    confirmPassword.classList.remove("false");
+   information.classList.remove("show-information");
+  } 
+  else {
+    confirmPassword.classList.add("false");
+    confirmPassword.classList.remove("true");
+   information.classList.add("show-information");
+  }
+
+      validarBoton()
+};
+//-------------------------------------
+
+//INPUTS
 //USERNAME
-username.addEventListener("input", (event) => {
-  validation(event, username, USERNAME_REGEX);
+username.addEventListener("input", () => {
+  validation( username, USERNAME_REGEX);
 });
 
 //EMAIL
-email.addEventListener("input", (event) => {
-  validation(event, email, EMAIL_REGEX);
+email.addEventListener("input", () => {
+  validation( email, EMAIL_REGEX);
 });
 
 //PHONE
-number.addEventListener("input", (event) => {
-  validation(event, number, NUMBER_REGEX);
+number.addEventListener("input", () => {
+  validation( number, NUMBER_REGEX);
 });
 
 //PASSWORD
-password.addEventListener("input", (event) => {
-  validation(event, password, PASSWORD_REGEX);
-
- if (password.value !== confirmPassword.value) {
-   confirmPassword.classList.add("false");
-   confirmPassword.classList.remove("true");
-       information.classList.add("show-information");
-  }
-
-   if (password.value == confirmPassword.value) {
-   confirmPassword.classList.add("true");
-   confirmPassword.classList.remove("false");
-       information.classList.remove("show-information");
- }
+password.addEventListener("input", () => {
+  validation(password, PASSWORD_REGEX);
+  validationPasswords();
 });
 
-confirmPassword.addEventListener("input", (event) => {
-    validation(event, confirmPassword, PASSWORD_REGEX);
- if (password.value == confirmPassword.value) {
-   confirmPassword.classList.add("true");
-   confirmPassword.classList.remove("false");
-       information.classList.remove("show-information");
- }
-
- if (password.value !== confirmPassword.value) {
-   confirmPassword.classList.add("false");
-   confirmPassword.classList.remove("true");
-       information.classList.add("show-information");
-  }
+//CONFIRM PASSWORD
+confirmPassword.addEventListener("input", () => {
+  validationPasswords();
 });
+
+registerButton.addEventListener("click", event => {
+  event.preventDefault()
+
+  const user = {
+    User: username.value,
+    Email: email.value,
+    Phone: `${phoneCode.innerHTML} ${number.value}`,
+    Password: password.value
+  }
+  console.log(user);
+})
