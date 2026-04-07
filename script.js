@@ -56,6 +56,7 @@ const validation = (element, regex) => {
 countries.addEventListener("input", (event) => {
   const optionSelected = [...event.target.children].find(
     (option) => option.selected,
+    countries.classList.add("true")
   );
   console.log(event.target);
 
