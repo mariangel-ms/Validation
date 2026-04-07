@@ -57,7 +57,6 @@ countries.addEventListener("input", (event) => {
     (option) => option.selected,
     countries.classList.add("true")
   );
-  console.log(event.target);
 
   phoneCode.innerHTML = `+ ${optionSelected.value}`;
 });
@@ -121,7 +120,6 @@ registerButton.addEventListener("click", event => {
     Phone: `${phoneCode.innerHTML} ${number.value}`,
     Password: password.value
   }
-  console.log(user);
 
   alert("¡Usuario registrado!");
 })
