@@ -1,14 +1,12 @@
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus {
-  /* Esto cambia el borde para que coincida con el tuyo */
+  
 
+  -webkit-text-fill-color: #e9ecef; 
+  -webkit-box-shadow: 0 0 0px 1000px #333333 inset; 
   
-  /* Esto "engaña" al navegador para que el fondo sea el de tu diseño */
-  -webkit-text-fill-color: #e9ecef; /* Color de tu texto */
-  -webkit-box-shadow: 0 0 0px 1000px #333333 inset; /* Tu color de fondo (gris oscuro) */
-  
-  /* Mantener la transición suave */
+
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -18,21 +16,21 @@ body {
   padding: 0;
   height: 100vh;
   display: flex;
-  justify-content: center; /* Centrado horizontal */
-  align-items: center; /* Centrado vertical */
+  justify-content: center;
+  align-items: center; 
   background-color: #171717;
   font-family: sans-serif;
 }
 
-/* 2. Estilo del contenedor del formulario */
+
 #form {
-  width: 550px; /* Ancho fijo para que no se deforme */
+  width: 550px;
   display: flex;
   flex-direction: column;
   border-radius: 15px;
   padding: 30px;
   background: rgb(41, 41, 41);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.293); /* Sombra para dar profundidad */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.293); 
   border: solid 1px rgb(57, 57, 57);
   gap: 0px;
 }
@@ -56,7 +54,7 @@ h1 {
   font-weight: 600;
 }
 
-/* 3. Acomodo de los inputs */
+
 .input-div {
   width: 100%;
   margin-bottom: 3px;
@@ -91,13 +89,13 @@ input {
 .input-phone {
   display: flex;
   gap: 10px;
-  align-items: stretch; /* Para que midan lo mismo de alto */
+  align-items: stretch; 
 }
 
 #information-phone {
   font-size: 12px;
   color: #d3d3d3;
-  margin-top: 5px; /* Espacio respecto al input */
+  margin-top: 5px; 
   margin-bottom: 0;
   display: none;
 }
@@ -114,7 +112,7 @@ border: 1px solid #585858;
   font-family: "Lexend", sans-serif;
 }
 
-/* 5. Textos de información */
+
 .information {
   display: none;
   font-size: 12px;
@@ -125,7 +123,7 @@ border: 1px solid #585858;
   
 }
 
-/* 6. Estilo del botón */
+
 #boton {
   background-color: #004997;
   color: white;
@@ -164,21 +162,21 @@ border: 1px solid #585858;
 
 
 input, select {
-  background: #333333; /* Un gris un poco más claro que el fondo */
+  background: #333333;
   color: #e9ecef;
-  border: 1px solid #444; /* Borde sutil */
-  width: 100%; /* Asegura que todos midan lo mismo */
-  box-sizing: border-box; /* Evita que el padding ensanche el input */
+  border: 1px solid #444; 
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
-/* El efecto cuando haces click para escribir */
+
 input:focus, select:focus {
   border-color: #1660c8;
   background: #3d3d3d;
-  box-shadow: 0 0 0 3px rgba(22, 96, 200, 0.2); /* Un resplandor suave */
+  box-shadow: 0 0 0 3px rgba(22, 96, 200, 0.2);
 }
 
 @media (max-width: 600px) {

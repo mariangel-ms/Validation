@@ -29,7 +29,6 @@ const validarBoton = () => {
 //VALIDATION
 const validation = (element, regex) => {
   const validationTest = regex.test(element.value);
-  console.log(element.value);
 
   let information = element.parentElement.querySelector(".information");
 
@@ -123,4 +122,6 @@ registerButton.addEventListener("click", event => {
     Password: password.value
   }
   console.log(user);
+
+  alert("¡Usuario registrado!");
 })
