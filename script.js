@@ -15,15 +15,22 @@ const registerButton = document.querySelector("#boton");
 //-----------FUNCIONES-----------
 
 const validarBoton = () => {
-  if (username.value === "" || email.value === "" || password.value === "" || number.value === "" || confirmPassword.value === "") {
-    registerButton.disabled = true; 
+if (
+    username.classList.contains("true") &&
+    email.classList.contains("true") &&
+    password.classList.contains("true") &&
+    number.classList.contains("true") &&
+    confirmPassword.classList.contains("true")
+  ) {
+    registerButton.disabled = false; 
   } else {
-    registerButton.disabled = false;
+    registerButton.disabled = true;
   }
 };
 
 [...countries].forEach((country) => {
   country.innerHTML = country.innerHTML.split("(")[0];
+    
 });
 
 //VALIDATION
@@ -31,6 +38,10 @@ const validation = (element, regex) => {
   const validationTest = regex.test(element.value);
 
   let information = element.parentElement.querySelector(".information");
+
+if (!information) {
+    information = element.parentElement.parentElement.querySelector(".information");
+  }
 
   if (validationTest) {
     element.classList.add("true");
@@ -59,6 +70,7 @@ countries.addEventListener("input", (event) => {
   );
 
   phoneCode.innerHTML = `+ ${optionSelected.value}`;
+  phoneCode.classList.add("true");
 });
 
 
